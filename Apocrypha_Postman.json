@@ -1,0 +1,464 @@
+{
+	"info": {
+		"_postman_id": "d978b7c5-aca2-4cef-9115-d0fb59da7c7b",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "RegisterUser",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"email\":\"test@yahoo.com\",\r\n\"firstName\":\"test\",\r\n\"lastName\":\"test\",\r\n\"userName\":\"test\",\r\n \"password\":\"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/keycloak/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"keycloak",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoginUser",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "cristitest",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "T3s8wKqz/Et9MlkMCgjobQ==",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "web",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "client_id",
+							"value": "springboot",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:11111/auth/realms/Apocrypha/protocol/openid-connect/token\n",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "11111",
+					"path": [
+						"auth",
+						"realms",
+						"Apocrypha",
+						"protocol",
+						"openid-connect",
+						"token\n"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ChangeNumberCalcSkill",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"skillName\":\"Mecanica\",\r\n\"numberCalc\":\"F5\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/admin/Proffession/changeNumberCalc",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"Proffession",
+						"changeNumberCalc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddSkillAdmin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"skillName\":\"Mecanica\",\r\n    \"numberCalc\":\"F20\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/admin/Proffession/addSkill",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"Proffession",
+						"addSkill"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addSkillUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"username\":\"TEST\",\r\n\"skillName\":\"C++\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/Profession/addSkill",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Profession",
+						"addSkill"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteSkillOfUser",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "test",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/Profession/C++",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Profession",
+						"C++"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSkillsOfUser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/Profession/test",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Profession",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddJobRecommendation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"recomandedFormula\":\"5I,5F\",\r\n\"nameOfRecomandation\":\"Tesla Junior car producer\",\r\n\"description\":\"Lorem ipsum sit amet\",\r\n\"Location\":\"Miloano\",\r\n\"jobType\":\"Full-Time\",\r\n\"mostImportantSkill\":\"mecanica\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/admin/Recommendation/addJob",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"Recommendation",
+						"addJob"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddUniversityRecommendation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"recomandedFormula\":\"2I,2M\",\r\n\"nameOfRecomandation\":\"Facultatea de Matematica si Informatica\",\r\n\"description\":\"foarte fain aici mai venim\",\r\n\"Location\":\"Bucharest\",\r\n\"durationOfStudy\":\"3\",\r\n\"titleOfStudy\":\"Licentiat in Matematica/Informatica\",\r\n\"creationDate\":\"06/02/2002\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/admin/Recommendation/addUniversity",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"Recommendation",
+						"addUniversity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UserGetAllRecommendations",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "test"
+				},
+				"url": {
+					"raw": "localhost:8080/Recommendation",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Recommendation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addCourseUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"recomandedFormula\":\"1I,1F\",\r\n\"nameOfRecomandation\":\"Java for dummies part 2\",\r\n\"description\":\"Lorem ipsum sit amet\",\r\n\"awardPoints\":\"15\",\r\n\"contentOfCourse\":\"Lorem impusem da mai mare se doreste sa fie\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/Recommendation/AddCourse/test",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Recommendation",
+						"AddCourse",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AdminAddsAVCourse",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"recomandedFormula\":\"1I,1F\",\r\n\"nameOfRecomandation\":\"Java for dummies\",\r\n\"description\":\"Lorem ipsum sit amet\",\r\n\"awardPoints\":\"15\",\r\n\"contentOfCourse\":\"Lorem impusem da mai mare se doreste sa fie\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/admin/Recommendation/addCourse/test",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"Recommendation",
+						"addCourse",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ConfirmeACourse",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/admin/Recommendation/Java for dummies part 2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"Recommendation",
+						"Java for dummies part 2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllRecommendations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/Recommendation/All",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Recommendation",
+						"All"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllCourseOfAUser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/Profession/Courses/test",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Profession",
+						"Courses",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteARecommendation",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/admin/Recommendation/Java for dummies part 3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"Recommendation",
+						"Java for dummies part 3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
