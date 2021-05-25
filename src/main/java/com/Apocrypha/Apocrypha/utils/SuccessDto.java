@@ -8,11 +8,11 @@ public class SuccessDto {
 
     private final String statusMessage = HttpStatus.OK.getReasonPhrase();
 
-    public Integer getStatusCode() {
-        return statusCode;
+    public SuccessDto() {
     }
 
-    public SuccessDto() {
+    public Integer getStatusCode() {
+        return statusCode;
     }
 
 }

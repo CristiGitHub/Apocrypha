@@ -1,6 +1,5 @@
 package com.Apocrypha.Apocrypha.controller;
 
-import com.Apocrypha.Apocrypha.dtos.LoginDto;
 import com.Apocrypha.Apocrypha.dtos.RegisterDto;
 import com.Apocrypha.Apocrypha.exceptions.UserAlreadyExistException;
 import com.Apocrypha.Apocrypha.models.User;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/keycloak")
 public class KeycloakController {
     private final UserKeycloakService userKeycloakService;
+
     @Autowired
     public KeycloakController(UserKeycloakService userKeycloakService) {
         this.userKeycloakService = userKeycloakService;
@@ -31,6 +31,7 @@ public class KeycloakController {
             return new ResponseEntity<>("Username or email used", HttpStatus.CONFLICT);
         }
     }
+
     @GetMapping("/user")
     public ResponseEntity<User> getUser(Authentication authentication) {
 

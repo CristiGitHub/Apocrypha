@@ -22,12 +22,12 @@ public class JobRecommendation extends Recommendation {
     private AvailableSkills mostImportantSkill;
 
     @Builder
-    public JobRecommendation(String recomandedFormula , String nameOfRecomandation , String description , Date creationDate,
-                             String Location , String jobType , AvailableSkills mostImportantSkill){
-        super(recomandedFormula,nameOfRecomandation,description,creationDate);
-        this.jobType=jobType;
-        this.Location=Location;
-        this.mostImportantSkill=mostImportantSkill;
+    public JobRecommendation(String recomandedFormula, String nameOfRecomandation, String description, Date creationDate,
+                             String Location, String jobType, AvailableSkills mostImportantSkill) {
+        super(recomandedFormula, nameOfRecomandation, description, creationDate);
+        this.jobType = jobType;
+        this.Location = Location;
+        this.mostImportantSkill = mostImportantSkill;
 
     }
 

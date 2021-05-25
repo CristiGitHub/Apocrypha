@@ -23,18 +23,20 @@ public class AdminRecommendationService {
     private final AvailableSkillsRepository availableSkillsRepository;
     private final CourseRecommendationRepository courseRecommendationRepository;
     private final UserRepository userRepository;
+
     @Autowired
-    public AdminRecommendationService(RecommendationRepository recommendationRepository , AvailableSkillsRepository availableSkillsRepository
-    , UserRepository userRepository , CourseRecommendationRepository courseRecommendationRepository){
-        this.recommendationRepository=recommendationRepository;
-        this.availableSkillsRepository=availableSkillsRepository;
-        this.userRepository=userRepository;
-        this.courseRecommendationRepository =courseRecommendationRepository;
+    public AdminRecommendationService(RecommendationRepository recommendationRepository, AvailableSkillsRepository availableSkillsRepository
+            , UserRepository userRepository, CourseRecommendationRepository courseRecommendationRepository) {
+        this.recommendationRepository = recommendationRepository;
+        this.availableSkillsRepository = availableSkillsRepository;
+        this.userRepository = userRepository;
+        this.courseRecommendationRepository = courseRecommendationRepository;
     }
-    public void addJob(AddJobDto addJobDto) throws SkilldoesNotExists , RecommendationAlreadyExists{
-        if(!availableSkillsRepository.existsBySkillName(addJobDto.getMostImportantSkill()))
+
+    public void addJob(AddJobDto addJobDto) throws SkilldoesNotExists, RecommendationAlreadyExists {
+        if (!availableSkillsRepository.existsBySkillName(addJobDto.getMostImportantSkill()))
             throw new SkilldoesNotExists(addJobDto.getMostImportantSkill());
-        if(recommendationRepository.existsByNameOfRecomandation(addJobDto.getNameOfRecomandation()))
+        if (recommendationRepository.existsByNameOfRecomandation(addJobDto.getNameOfRecomandation()))
             throw new RecommendationAlreadyExists(addJobDto.getNameOfRecomandation());
         AvailableSkills availableSkills = getSkillByName(addJobDto.getMostImportantSkill());
         JobRecommendation jobRecommendation = JobRecommendation.builder()
@@ -49,8 +51,9 @@ public class AdminRecommendationService {
         recommendationRepository.save(jobRecommendation);
 
     }
+
     public void addUniversity(AddUniversityDto addUniversityDto) throws RecommendationAlreadyExists, ParseException {
-        if(recommendationRepository.existsByNameOfRecomandation(addUniversityDto.getNameOfRecomandation()))
+        if (recommendationRepository.existsByNameOfRecomandation(addUniversityDto.getNameOfRecomandation()))
             throw new RecommendationAlreadyExists(addUniversityDto.getNameOfRecomandation());
 
         Date data = new SimpleDateFormat("dd/MM/yyyy").parse(addUniversityDto.getCreationDate());
@@ -66,10 +69,10 @@ public class AdminRecommendationService {
         recommendationRepository.save(universityRecommendation);
     }
 
-    public void createCourse(AddCourseRecomendationDto addCourseRecomendationDto , String username) throws UserDoesNotExists, RecommendationAlreadyExists{
-        if(!userRepository.existsByUsername(username))
+    public void createCourse(AddCourseRecomendationDto addCourseRecomendationDto, String username) throws UserDoesNotExists, RecommendationAlreadyExists {
+        if (!userRepository.existsByUsername(username))
             throw new UserDoesNotExists(username);
-        if(recommendationRepository.existsByNameOfRecomandation(addCourseRecomendationDto.getNameOfRecomandation()))
+        if (recommendationRepository.existsByNameOfRecomandation(addCourseRecomendationDto.getNameOfRecomandation()))
             throw new RecommendationAlreadyExists(addCourseRecomendationDto.getNameOfRecomandation());
         User user = userRepository.findByUsername(username);
         CourseRecommendation courseRecommendation = CourseRecommendation.builder()
@@ -86,25 +89,26 @@ public class AdminRecommendationService {
 
 
     }
-    public void confirmACourse(String couserName) throws RecommendationAlreadyExists,TheCourseIsAlreadyConfirmedException,ThisIsNotACourseException{
-        if(!recommendationRepository.existsByNameOfRecomandation(couserName))
+
+    public void confirmACourse(String couserName) throws RecommendationAlreadyExists, TheCourseIsAlreadyConfirmedException, ThisIsNotACourseException {
+        if (!recommendationRepository.existsByNameOfRecomandation(couserName))
             throw new RecommendationAlreadyExists(couserName);
         Optional<CourseRecommendation> courseRecommendationOptional = courseRecommendationRepository.findCourseRecommendationByNameOfRecomandation(couserName);
-        if(courseRecommendationOptional.isEmpty())
+        if (courseRecommendationOptional.isEmpty())
             throw new ThisIsNotACourseException(couserName);
-        if(courseRecommendationOptional.get().getItsConfirmed())
+        if (courseRecommendationOptional.get().getItsConfirmed())
             throw new TheCourseIsAlreadyConfirmedException(couserName);
-        courseRecommendationRepository.updateAvailableSkillsNumberCalc(true,couserName);
+        courseRecommendationRepository.updateAvailableSkillsNumberCalc(true, couserName);
     }
-    public void deleteRecommendation(String name) throws RecommendationAlreadyExists{
-        if(!recommendationRepository.existsByNameOfRecomandation(name))
+
+    public void deleteRecommendation(String name) throws RecommendationAlreadyExists {
+        if (!recommendationRepository.existsByNameOfRecomandation(name))
             throw new RecommendationAlreadyExists(name);
         recommendationRepository.deleteRecommendationByNameOfRecomandation(name);
     }
 
 
-
-    public AvailableSkills getSkillByName(String name){
+    public AvailableSkills getSkillByName(String name) {
         return availableSkillsRepository.findAvailableSkillsBySkillName(name);
     }
 

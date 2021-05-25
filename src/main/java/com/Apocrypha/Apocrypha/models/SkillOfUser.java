@@ -5,12 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-import javax.annotation.PostConstruct;
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 @Builder
 @Data
@@ -28,7 +23,6 @@ public class SkillOfUser {
 
     @OneToOne
     private AvailableSkills availableSkills;
-
 
 
 }

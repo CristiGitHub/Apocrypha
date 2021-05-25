@@ -18,44 +18,44 @@ import java.util.List;
 public class RecommendationController {
 
     private final RecommendationService recommendationService;
+
     @Autowired
-    public RecommendationController(RecommendationService recommendationService){
-        this.recommendationService =recommendationService;
+    public RecommendationController(RecommendationService recommendationService) {
+        this.recommendationService = recommendationService;
     }
 
     @GetMapping("")
-    public ResponseEntity getAllRecomendation(@RequestBody String username){
+    public ResponseEntity getAllRecomendation(@RequestBody String username) {
         try {
             List<String> result = recommendationService.getAllRecommendations(username);
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (RecommendationAlreadyExists e) {
-            return new ResponseEntity<>("You have no recomendations!" , HttpStatus.CONFLICT);
+            return new ResponseEntity<>("You have no recomendations!", HttpStatus.CONFLICT);
         } catch (UserHasNoSkills e) {
-            return new ResponseEntity<>("Please add some Personalize your profile fisrt of all!" , HttpStatus.CONFLICT);
+            return new ResponseEntity<>("Please add some Personalize your profile fisrt of all!", HttpStatus.CONFLICT);
         } catch (UserDoesNotExists e) {
-            return new ResponseEntity<>("User does not exists" , HttpStatus.CONFLICT);
+            return new ResponseEntity<>("User does not exists", HttpStatus.CONFLICT);
         }
     }
+
     @GetMapping("/All")
-    public ResponseEntity getAll(){
-        try{
+    public ResponseEntity getAll() {
+        try {
             List<String> result = recommendationService.getAll();
             return new ResponseEntity<>(result, HttpStatus.OK);
-        }
-        catch (RecommendationAlreadyExists e){
+        } catch (RecommendationAlreadyExists e) {
             return new ResponseEntity<>("There is no content!", HttpStatus.CONFLICT);
         }
     }
+
     @PostMapping("/AddCourse/{username}")
-    public ResponseEntity createCourse(@RequestBody AddCourseRecomendationDto addCourseRecomendationDto , @PathVariable String username){
-        try{
-            recommendationService.createCourse(addCourseRecomendationDto,username);
+    public ResponseEntity createCourse(@RequestBody AddCourseRecomendationDto addCourseRecomendationDto, @PathVariable String username) {
+        try {
+            recommendationService.createCourse(addCourseRecomendationDto, username);
             return new ResponseEntity<>("The course will be examined and added in short bit!", HttpStatus.OK);
-        }
-        catch (UserDoesNotExists e){
+        } catch (UserDoesNotExists e) {
             return new ResponseEntity<>("The user does not exists", HttpStatus.CONFLICT);
-        }
-        catch (RecommendationAlreadyExists e){
+        } catch (RecommendationAlreadyExists e) {
             return new ResponseEntity<>("The course Alrready exists!", HttpStatus.CONFLICT);
         }
     }

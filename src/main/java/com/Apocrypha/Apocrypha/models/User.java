@@ -35,9 +35,9 @@ public class User {
     @Column(name = "username", unique = true)
     private String username;
 
-    @OneToMany(cascade = CascadeType.ALL , mappedBy = "user")
-    private List<SkillOfUser> skillOfUsers= new ArrayList<SkillOfUser>();
-    @OneToMany(cascade = CascadeType.ALL , mappedBy = "authorOfCourse")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<SkillOfUser> skillOfUsers = new ArrayList<SkillOfUser>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "authorOfCourse")
     private List<CourseRecommendation> courseRecommendations = new ArrayList<CourseRecommendation>();
 
 

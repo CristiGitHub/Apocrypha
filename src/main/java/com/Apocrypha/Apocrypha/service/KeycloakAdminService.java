@@ -18,10 +18,9 @@ import java.util.Collections;
 @Service
 public class KeycloakAdminService {
 
+    private final Keycloak keycloak;
     @Value("${keycloak.realm}")
     private String keycloakRealm;
-
-    private final Keycloak keycloak;
     private RealmResource realmResource;
 
     @Autowired
